@@ -1,3 +1,5 @@
+from math import sqrt
+
 #problema 9: Transforma un numar din baza 2 in baza 16(numarul se da in baza 2)
 def get_base_16_from_2(n : str):
     base_10 = 0
@@ -52,6 +54,22 @@ def test_get_n_choose_k():
 
 test_get_n_choose_k()
 
+#Problema 12: Afiseaza toate patratele perfecte dintr-un interval inchis dat.
+def get_perfect_squares(start: int, end: int):
+    lista_pp = []
+    for numar in range(start, end+1):
+        if int(sqrt(numar)) == float(sqrt(numar)):
+            lista_pp.append(numar)
+    
+    return lista_pp
+
+
+def test_get_perfect_squares():
+    assert get_perfect_squares(10,60) == [16,25,36,49]
+    assert get_perfect_squares(30,50) == [36, 49]
+    assert get_perfect_squares(1,20) == [1,4,9,16]
+
+test_get_perfect_squares()
 
 def main():
     stillrunning = True
@@ -68,7 +86,14 @@ def main():
             n = int(input("Scrie n: "))
             k = int(input("Scrie k: "))
             print(f"Combinari de {n} luate cate {k} este egal cu {get_n_choose_k(n,k)} ")
+        elif problema == '3':
+            print("Ai ales problema 3: Afiseaza toate patratele perfecte dintr-un interval inchis dat.")
+            start = int(input("Scrie capatul din stanga al intervalului: "))
+            end = int(input("Scrie capatul din dreapta al intervalului: "))
+            _list = get_perfect_squares(start, end)
+            print(f"Patratele perfecte din intervalul [{start}, {end}] sunt: " + ", ".join(str(pp) for pp in _list))
         elif problema == 'x':
+            print("Program incheiat!")
             stillrunning = False
         else:
             print("Ai ales o optiune inexistenta, incearca din nou!")
